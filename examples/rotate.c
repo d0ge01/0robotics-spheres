@@ -1,10 +1,8 @@
 /* Global Library Variables */
-int time;
 bool reachedOther;
 
 void zr_varinit()
 {
-  time = 0;
 
 }
 
@@ -17,17 +15,6 @@ void mathVecScale(float res[3], float src[3], float mag, bool norm)
     res[2]*=mag;
 }
 
-bool isCloseEnough(float *MyState, float *Target, float Margin)
-{
-    bool result = false;
-    float diff[3];
-    mathVecSubtract(diff, MyState, Target,3);
-    float dist = mathVecMagnitude(diff,3);
-    if(dist<Margin) 
-        result = true;
-     
-    return result;
-}
 void ASSERT(int shouldbetrue) {}
 
 void loop(){
