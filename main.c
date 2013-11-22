@@ -25,10 +25,13 @@
                     =++%%%%+/:-. 
 */
 int time;		// Tempo, usato per vedere quanti loop fa
-
+float res[3];
 
 void init() {
 	time = 0;	// Imposto tempo = 0
+	res[0] = 0;
+	res[1] = 0;
+	res[2] = 0;
 
 }
 
@@ -59,14 +62,14 @@ bool vicino(float now[3], float target[3], float error) {
 	return reached;
 }
 
-void sommaVettori(float res[3], float pow[3]) {
-	res[0] += pow[0];
-	res[1] += pow[1];
-	res[2] += pow[2];
+void sommaVettori(float ret[3], float pow[3]) {
+	ret[0] += pow[0];
+	ret[1] += pow[1];
+	ret[2] += pow[2];
 }
 
-bool verificaNullo(float res[3]) {
-	if ( res[0] == 0 && res[1] == 0 && res[2] == 0 )
+bool verificaNullo(float ret[3]) {
+	if ( ret[0] == 0 && ret[1] == 0 && ret[2] == 0 )
 		return true;
 	else
 		return false;
@@ -82,7 +85,6 @@ void loop() {
 	float punto3[] = { .5, -.5, 0};
 	float punto4[] = { .5, .5, 0}
 	
-	float res[3];
 	float now[3];
 	float spinta[3];	
 
