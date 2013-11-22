@@ -83,7 +83,7 @@ void loop() {
 	float punto1[] = { -.5, -.5, 0};
 	float punto2[] = { -.5, .5, 0};
 	float punto3[] = { .5, -.5, 0};
-	float punto4[] = { .5, .5, 0}
+	float punto4[] = { .5, .5, 0};
 	
 	float now[3];
 	float spinta[3];	
