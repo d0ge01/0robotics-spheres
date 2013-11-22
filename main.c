@@ -26,36 +26,12 @@
 */
 int time;		// Tempo, usato per vedere quanti loop fa
 
-void ottieniXYZ(float ret[3], float myState[12]);
-void ottieniSpinta(float ret[3], float now[3], float target[3]);
-bool vicino(float now[3], float target[3], float error);
 
 void init() {
 	time = 0;	// Imposto tempo = 0
 
 }
 
-void loop() {
-	float miaPosizione[12];		// Posizione mia
-	
-	// 4 punti destinazione
-	float punto1[] = { -.5, -.5, 0};
-	float punto2[] = { -.5, .5, 0};
-	float punto3[] = { .5, -.5, 0};
-	float punto4[] = { .5, .5, 0}
-	
-	float now[3];
-	float spinta[3];	
-
-	// prendo la mia posizione
-	api.getMyZRState(miaPosizione);
-	
-	ottieniXYZ(now, miaPosizione);
-	
-	ottieniSpinta(spinta, now, punto1);
-	DEBUG(("Tempo di rilascio: %d X:%f Y:%f Z: %f", time, now[0], now[1], now[2]));
-	api.setForces(spinta);
-}
 
 void ottieniXYZ(float ret[3], float myState[12]) {
 	ret[0] = myState[0];
@@ -76,4 +52,25 @@ bool vicino(float now[3], float target[3], float error) {
 	reached = reached && (( target[1] - now[1] ) < error );
 	reached = reached && (( target[2] - now[2] ) < error );
 	return reached;
+}
+void loop() {
+	float miaPosizione[12];		// Posizione mia
+	
+	// 4 punti destinazione
+	float punto1[] = { -.5, -.5, 0};
+	float punto2[] = { -.5, .5, 0};
+	float punto3[] = { .5, -.5, 0};
+	float punto4[] = { .5, .5, 0}
+	
+	float now[3];
+	float spinta[3];	
+
+	// prendo la mia posizione
+	api.getMyZRState(miaPosizione);
+	
+	ottieniXYZ(now, miaPosizione);
+	
+	ottieniSpinta(spinta, now, punto1);
+	DEBUG(("Tempo di rilascio: %d X:%f Y:%f Z: %f", time, now[0], now[1], now[2]));
+	api.setForces(spinta);
 }
